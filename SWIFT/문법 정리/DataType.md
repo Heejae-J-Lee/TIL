@@ -1,0 +1,154 @@
+### 변수와 상수
+* 변수  
+```swift
+/* 
+swift에서는 아래와 같이 변수를 선언할 수 있다.
+*/
+var name: String = "Heejae"
+var age: Int = 29
+var job = "SW Engineer"  // Type Inference
+var height = 170.1
+
+/* 
+아래와 같이 변수 값을 변경하고, 콘솔창에 출력할 수 있다.
+*/
+age = 20
+job = "IOS Developer"
+print("Greeting, My name is \(name), \(age) years old. I am \(job). Thank you!") // String Interpolation \(variable)
+```  
+  
+* 상수  
+```swift
+let name: String = "Heejae"
+var age: Int = 29
+var job = "SW Engineer"  // Type Inference
+let height = 170.1
+age = 30
+job = "IOS Programmer"
+name = "Jaehee"  // 상수의 경우 값을 변경할 수 없기 때문에 error 가 발생한다.
+print("Greeting, My name is \(name), \(age) years old. I am \(job). Thank you!") // String Interpolation \(variable)
+```  
+</br></bre>
+### Data Type
+> Swift의 모든 Data Type은 카멜 케이스를 사용한다.  
+> ex) Int, UInt, Bool, Float, Double, Character, String, Any, AnyObject, nil
+  
+* Int, UInt
+```swift
+// Int, UInt 예제
+var integer: Int = -100
+var unsignedInteger: UInt = 50 // UInt 형은 음수값 사용 불가
+print("Int 최댓값 : \(Int.max), Int 최솟값 : \(Int.min)")
+print("UInt 최댓값 : \(UInt.mas), UInt 최솟값 : \(UInt.min)")
+let largeInteger: Int64 = Int64.max
+let smallUnsignedInteger: UInt8.max
+
+let tooLarge: Int = Int.max + 1 // error : Int 형의 최댓값을 초과
+let cannotBeNegative: UInt = -5 // error : UInt 형은 음수값을 가질 수 없음
+integer = unsignedInteger       // error : Int 와 UInt형은 다른 타입임
+integer = Int(unsignedInteger)  // Type Casting을 통해 UInt 값을 Int에 할당할 수 있음
+/*
+C language와 동일하게 다음과 같은 prefix를 사용하여 진수별로 표현이 가능하다.
+Decimal : (non-prefix)
+Hexadecimal : 0x
+Oxtal : 0o
+Binary : 0b
+*/
+let dex: Int = 29
+let hex: Int = 0x1B    // 29
+let octal: Int = 0o35  // 29
+let bin: Int = 0b11101 // 29
+```
+* Bool (Boolean)
+```swift
+// Bool Type은 true와 false 두개의 값을 가질 수 있음
+var boolean: Bool = true
+boolean.toggle()  // true -> false로 값 반전
+```
+* Float, Double
+```swift
+// 실수 타입 Float, Double
+// Float : 32 bit, Double : 64 bit
+var floatValue: Float = 1234567890.1 // float 로는 표현할 수 없음 (정확도 저하)
+var doubleValue: Double = 1234567890.1 // 하지만 Double로는 가능하다
+
+/*
+10 진수, 16진수의 경우 다음과 같이 확장 표현이 가능하다.
+(10진수) 5e3 = 5 * 1000
+(10진수) 1.2E-2 = 0.012
+(16진수) 0XaP-2 = 10 * (1/4) = 2.5
+(16진수) 0XAp3 = 10 * (8) = 80
+*/
+```
+* Character
+```swift
+// swift 는 Unicode 9를 사용한다
+let alphabetA: Character = "a"
+
+// 유니코드 문자도 사용가능
+let commandCharacter: Character = "★"
+
+// 심지어 한글 변수 명도 지원한다. 물론 이렇게 사용하는 경우는 드뭄
+let 변수명: Character = "ㄱ"
+```
+* String
+```swift
+// 상수로 된 문자열은 변경이 불가
+let name: String = "Heejae"
+
+// Initializer를 통해 빈 문자열 생성 가능
+var introduce: String = String()
+
+// method 1. append()
+introduce.append("제 이름은 ")
+
+// '+' 연산자를 통해 동일한 로직을 짤 수 있다.
+introduce = introduce + name + "입니다"
+introduce += "!!!"
+
+// method 2. hasPrefix(), hasSuffix()
+// 접두사, 접미어 확인 가능
+var myString: String = "SuperHeejaeUltra"
+myString.hasPrefix("Super") // true
+myString.hasPrefix("Ultra") // false
+myString.hasSuffix("Ultra") // true
+myString.hasSuffix("Super") // false
+
+// method 3. 대소문자 변환
+var convertString: String = "Heejae"
+convertString.uppercased()
+convertString                // HEEJAE
+convertString.lowercased()
+convertString                // heejae
+
+// property 1. count
+// 글자 수 확인 가능
+introduce.count
+
+// property 2. isEmpty
+// 빈 문자열인지 확인
+
+//  Unicode 스칼라 값을 사용할 수도 있다.
+let unicodeScalarValue: String = "\u{2665}"
+
+// 아래와 같은 방식으로 여러줄의 문자열을 할당할 수도 있다
+let multiLineString: String = """
+이런 방식으로 여러줄의 스트링을
+직접적으로 변수 혹은 상수로 할당할 수가 있습니다.
+큰 따옴표의 경우 내려쓰기로 사용해야 합니다.
+"""
+```
+* Any, AnyObject, nil
+```swift
+// Any 변수에는 어떤 형태의 값도 할당 가능하다.
+// 다만 Any 변수의 경우 에러의 위험성을 증대시키므로 사용을 지양하는 것이 좋음
+// 타입은 될 수 있다면 명시할 것
+var AnyVariable: Any = "any"
+AnyVariable = 33
+AnyVariable = true
+
+// AnyObject의 경우 클래스의 인스턴스 만을 할당할 수 있는 변수형이다.
+// nil 의 경우 값이 없음을 의미하는 키워드이다.
+// 값이 없음 == 비어있음
+// nil 인 변수에 접근할 경우 Null Point Exception 과 같은 에러에 직면할 수도 있다.
+```
