@@ -152,3 +152,83 @@ AnyVariable = true
 // 값이 없음 == 비어있음
 // nil 인 변수에 접근할 경우 Null Point Exception 과 같은 에러에 직면할 수도 있다.
 ```
+
+### Type Inference
+변수나 상수 선언 시 타입을 명시하지 않아도 컴파일러가 할당된 값을 기준으로 변수 및 상수 타입을 결정하는 것을 타입 추론이라고 한다.
+```swift
+var number = 3
+
+number = "삼" // 에러가 발생한다
+```
+
+### Type Alias 
+이미 존재하는 데이터 타입에 임의의 다른 이름을 부여할 수 있다.
+```swift
+typealias MyNumber = Int
+typealias NewNumber = Int
+
+let Num1: MyNumber = 3
+var Num2: NewNumber = 33
+
+Num2 = Num1    // 결국은 같은 타입으로 취급
+```
+
+### Tuple
+지정된 데이터의 묶음  
+튜플에 포함된 데이터의 개수 제한은 없다
+```swift
+var info: (String, Int, Double) = ("Heejae", 29, 170.1)
+
+print ("이름 \(person.0) 나이는 \(person.1) 키는 \(person.2)")
+
+// 각 데이터에 키워드를 지정할 수도 있다.
+
+var otherInfo: (name: String, age: Int, height: Double) = ("Minsu", 33, 180.1)
+
+print ("이름 \(otherInfo.name) 나이는 \(otherInfo.age) 키는 \(otherInfo.2)")
+
+
+// type alias 와 함께 사용도 가능하다
+typealias PersonTuple = (name: String, age: Int, height: Double)
+```
+
+### Collection Type  
+- Array
+  - 데이터를 순서대로 저장하는 컬렉션 타입
+  - ```swift
+    var lists: Array<String> = ["Pizza", "Chicken", "Jokbal"]
+    // 동일한 표현 (축약형)
+    var lists: [String] = ["Pizza", "Chicken", "Jokbal"]
+
+    var emptyArray: [Any] = [Any]()
+    var emptyArray: [Any] = Array<Any>()
+    var emptyArray: [Any] = []
+
+    // property .isEmpty .count
+    emptyArray.isEmpty    // true
+    list.count     // 3
+
+    // 변경 
+    lists[2] = "Ramyen"
+
+    // 추가 
+    lists.append("Bossam")
+    lists.append(contentsOf: ["Fruits", "IceCream"])     // 여러개를 한꺼번에 추가도 가능
+
+    // method insert() at: 위치에 데이터 추가
+    lists.insert("Gopchang", at:2)
+    lists[2]    // "Gopchang"
+    lists.index(of: "Gopchang")    // 2
+    lists.index(of: "GgaGga")    // 없으면 nil
+
+    lists.first    // "Pizza"
+    lists.last     // "IceCream"
+
+    // 데이터 원소의 제거
+    lists.removeFirst()    // "Pizza"
+    lists.removeLast()     // "IceCream"
+    names.remove(at: 2)    // "Gopchang"
+    lists[1 ... 3]         // ["Gopchang", "Raryen", "Bossam"]
+    ```
+- Dictionary
+- Set
