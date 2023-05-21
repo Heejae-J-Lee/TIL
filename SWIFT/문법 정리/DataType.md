@@ -229,6 +229,185 @@ typealias PersonTuple = (name: String, age: Int, height: Double)
     lists.removeLast()     // "IceCream"
     names.remove(at: 2)    // "Gopchang"
     lists[1 ... 3]         // ["Gopchang", "Raryen", "Bossam"]
+
+    // 범위를 변경할수도 있다
+    lists[1 ... 3] = ["A", "B", "C"]
     ```
 - Dictionary
+  - 순서 없이 키와 값의 쌍으로 이루어진 컬렉션 타입
+  - 키는 유일한 값이어야한다.
+  - 없는 키로 접근해도 에러를 발생시키진 않는다. (nil을 반환)
+  - ```swift
+    var number: [String: Int] = [String: Int]()
+
+    // typealias 사용 가능
+    typealias StringIntDictionary = [String: Int]
+
+    // 키와 값 쌍만 제대로 명시하면 [:] 로도 선언 가능
+    var number: [String: Int] = [:]
+
+    number.isEmpty    // true
+    number.count      // 0
+
+    number["일"] = 1
+
+    number["일"]      // 1
+    number["이"]      // nil
+
+    number["일"] = 2  // 변경 가능
+    number["진짜일"] = 1 // 추가
+
+    // 삭제
+    number.removeValue(forKey: "일")  // 2
+    number.removeValue(forKey: "일")  // nil
+
+    // 기본값 설정
+    number["삼", default: 0]  // 3
+    ```
 - Set
+  - 같은 타입의 데이터를 순서 없이 저장
+  - 세트는 중복된 값이 존재하지 않는다
+  - 배열과 다르게 축약형이 존재하지 않음
+  - ```swift
+    var names: Set<String> = Set<String>()
+    var names: Set<String> = []
+
+    var names: Set<String> = ["한놈", "두시기", "석삼"]
+    names.isEmpty    // false
+    names.count      // 3
+
+    // 요소 추가
+    names.insert("너구리")
+
+    // 요소 삭제
+    names.remove("한놈")    // "한놈"
+    names.remove("한놈")    // nil
+
+    let pokemon: Set<String> = ["피카츄", "라이츄", "파이리"]
+    let digimon: Set<String> = ["아구몬", "파피몬", "파닥몬", "피카츄"]
+
+    // 교집합
+    pokemon.intersection(digimon)    // {"피카츄"}
+
+    // 여집합
+    pokemon.symmetricDifference(digimon)    // {"라이츄", "파이리", "아구몬", "파피몬", "파닥몬"}
+
+    // 합집합
+    pokemon.union(digimon)  // {"피카츄", "라이츄", "파이리", "아구몬", "파피몬", "파닥몬"}
+
+    // 차집합
+    pokemon.subtracting(digimon)  // {"라이츄", "파이리"}
+
+    // sorting
+    pokemon.sorted()    // ["라이츄", "피카츄", "파이리"]
+
+    // 배타적 여부 .isDisjoint(with:) : 겹치는게 하나도 없으면 true
+    // 부분집합 (포함 여부) .isSubset(of:)
+    // 전체집합 .isSuperSet(of:)
+    ```
+
+### 열거형
+열거형 : 연관된 항목들을 묶어서 표현할 수 있는 타입   사용하는 경우
+
+열거형을 사용하는 경우
+
+- 정해진 값 외에는 입력받고 싶지 않을 때
+- 예상된 입력 값이 한정되어 있을 때
+
+```swift 
+// 스위프트의 열거형은 enum으로 표현이 가능하다;
+// 모든 케이스는 ,로 구분하여 한줄로도 표현이 가능하다.
+enum Fruit {
+  case apple
+  case banana
+  case orange
+  case pineapple
+  case watermelon
+}
+
+var myFavoriteFruit: Fruit = Fruit.orange
+var yourFavoriteFruit: Fruit = .apple
+
+myFavoriteFruit: Fruit = .watermelon
+
+// 열거형은 raw value 도 가질 수 있다.
+enum Fruit: String {
+  case apple = "사과"
+  case banana = "바나나"
+  case orange = "오랜지"
+  case pineapple = "파인애플"
+  case watermelon = "수박"
+}
+let summerFruit: Fruit = .watermelon
+summerFruit.rawValue    // "수박"
+
+// 일부의 케이스만 raw Value를 줄 수도 있다.
+enum Number: Int {
+  case one
+  case two
+  case three = 55
+}
+Number.one.rawValue    // 1
+Number.two.rawValue    // 2
+Number.three.rawValue  // 55
+
+// rawValue로 열거형 값을 가져올 수도 있다.
+Number(rawValue: 55)    // three
+Number(rawValue: 3)     // nil
+
+// 다음과 같이 연관 값을 줄 수도 있음
+enum Hogwarts {
+  case Gryffindor(belong: String, weapon: String)
+  case Hufflepuff
+  case Ravenclaw
+  case Slytherin(blood: String)
+}
+var HarryPotter: Hogwarts = Hogwarts.Gryffindor(belong: "불사조", weapon: "딱총나무")
+HarryPotter = .Slytherin(blood: "순혈")
+
+// 열거형 항목 순회
+// rawValue가 없는 경우;
+enum Fruit {
+  case apple
+  case banana
+  case orange
+  case pineapple
+  case watermelon
+}
+
+let allCases: [Fruit] = Fruit.allCases // [Fruit.apple, Fruit.banana, ..., Fruit.watermelon]
+
+// rawValue 가 있는 경우;
+// 프로토콜 CaseIterable 을 추가
+enum Fruit: String, CaseIterable {
+  case apple = "사과"
+  case banana = "바나나"
+  case orange = "오랜지"
+  case pineapple = "파인애플"
+  case watermelon = "수박"
+}
+let allCases: [Fruit] = Fruit.allCases // [Fruit.apple, Fruit.banana, ..., Fruit.watermelon]
+/*
+  특정 플랫폼 별로 case를 사용할 필요가 있을 때에는, @available 속성을 사용해야하며,
+  열거형이 연관값을 갖는 경우는 allCases 프로퍼티를 사용할 수 없으니 주의하여야한다;
+  사용이 필요할 경우는 직접 구현이 필요하다.
+*/
+
+// 순환 열거형
+// 열거형의 연관값이 자기 자신의 값이고자 할 경우,
+// indirect 키워드를 사용하여 순환 열거형을 사용할 수 있다.
+
+// 특정 케이스에만 사용
+enum ArithmeticExpression {
+  case number(Int)
+  indirect case addition(ArithmeticExpression, ArithmeticExpression)
+  indirect case multiplication(ArithmeticExpression, ArithmeticExpression)
+}
+
+// 모든 케이스에 대하여 사용할 경우
+indirect enum ArithmeticExpression {
+  case number(Int)
+  case addition(ArithmeticExpression, ArithmeticExpression)
+  case multiplication(ArithmeticExpression, ArithmeticExpression)
+}
+```
