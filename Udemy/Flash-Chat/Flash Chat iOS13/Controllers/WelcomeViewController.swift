@@ -16,7 +16,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let titleText = "⚡️FlashChat"
+        let titleText = K.appName
         titleLabel.text = ""
         var charIndex = 0
         for letter in titleText {
@@ -29,11 +29,11 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func registerButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToRegister", sender: self)
+        performSegue(withIdentifier: K.WelcomeToRegisterSegue, sender: self)
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToLogin", sender: self)
+        performSegue(withIdentifier: K.WelcomeToLoginSegue, sender: self)
     }
     
 }
