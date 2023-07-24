@@ -349,7 +349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jFP-qE-CyQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2942.0289855072465" y="134.59821428571428"/>
+            <point key="canvasLocation" x="2924" y="135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lpg-ab-Ox5">
@@ -359,6 +359,13 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cMZ-im-Abr">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="BrandBlue"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="25"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -371,7 +378,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="m5f-6C-BN6"/>
+        <segue reference="7lG-hx-n8c"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
