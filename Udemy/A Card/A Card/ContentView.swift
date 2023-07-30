@@ -14,13 +14,26 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             VStack {
                 VStack {
-                    Text("Hello, world!")
+                    Image("Cat")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150.0, height: 150.0)
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle().stroke(Color.white, lineWidth: 5)
+                        )
+                    Text("이희재")
                         .font(Font.custom("Gaegu-Regular", size: 40))
                         .bold()
                     .foregroundColor(.white)
+                    Text("iOS Developer ")
+                        .foregroundColor(.white)
+                        .font(.system(size: 25))
+                    Divider()
+                    InfoView(text: "+82 10 0000 0000", imageName: "phone.fill")
+                    InfoView(text: "hee.404.jerry@gmail.com", imageName: "envelope.fill")
                 }
             }
-            .padding()
         }
     }
 }
@@ -30,3 +43,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
