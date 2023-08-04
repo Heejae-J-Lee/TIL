@@ -13,6 +13,8 @@
 		1B0B300A2A7BEFF10022A695 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B0B30092A7BEFF10022A695 /* Preview Assets.xcassets */; };
 		1B0B30122A7BF29D0022A695 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0B30112A7BF29D0022A695 /* NetworkManager.swift */; };
 		1B0B30142A7BF3950022A695 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0B30132A7BF3950022A695 /* PostData.swift */; };
+		1BDE09792A7D4F2A008E2F09 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE09782A7D4F2A008E2F09 /* DetailView.swift */; };
+		1BDE097B2A7D547F008E2F09 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE097A2A7D547F008E2F09 /* WebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		1B0B30092A7BEFF10022A695 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1B0B30112A7BF29D0022A695 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1B0B30132A7BF3950022A695 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		1BDE09782A7D4F2A008E2F09 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		1BDE097A2A7D547F008E2F09 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,7 @@
 			children = (
 				1B0B30102A7BF2860022A695 /* Models */,
 				1B0B30022A7BEFF00022A695 /* H4K0R_NewsApp.swift */,
-				1B0B30042A7BEFF00022A695 /* ContentView.swift */,
+				1BDE09772A7D4F09008E2F09 /* Views */,
 				1B0B30062A7BEFF10022A695 /* Assets.xcassets */,
 				1B0B30082A7BEFF10022A695 /* Preview Content */,
 			);
@@ -79,6 +83,16 @@
 				1B0B30132A7BF3950022A695 /* PostData.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1BDE09772A7D4F09008E2F09 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B0B30042A7BEFF00022A695 /* ContentView.swift */,
+				1BDE09782A7D4F2A008E2F09 /* DetailView.swift */,
+				1BDE097A2A7D547F008E2F09 /* WebView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +168,8 @@
 				1B0B30122A7BF29D0022A695 /* NetworkManager.swift in Sources */,
 				1B0B30142A7BF3950022A695 /* PostData.swift in Sources */,
 				1B0B30052A7BEFF00022A695 /* ContentView.swift in Sources */,
+				1BDE097B2A7D547F008E2F09 /* WebView.swift in Sources */,
+				1BDE09792A7D4F2A008E2F09 /* DetailView.swift in Sources */,
 				1B0B30032A7BEFF00022A695 /* H4K0R_NewsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
