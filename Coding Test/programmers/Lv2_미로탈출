@@ -1,0 +1,56 @@
+dy = [1, -1, 0, 0]
+dx = [0, 0, 1, -1]
+
+def find_way(maps, from_coord, to_coord):
+    stack = []
+    stack.append(from_coord)
+    
+    limit_y = len(maps)
+    limit_x = len(maps[0])
+    limit = limit_y * limit_x
+    
+    map_copy = [[limit for _ in range(limit_x)] for _ in range(limit_y)]
+    map_copy[from_coord[0]][from_coord[1]] = 0
+
+    while True:
+        if len(stack) == 0:
+            break
+        cur_item = stack.pop()
+        dist = map_copy[cur_item[0]][cur_item[1]]
+        
+        for direction in range(4):
+            next_y = cur_item[0] + dy[direction]
+            next_x = cur_item[1] + dx[direction]
+            
+            if next_y >= 0 and next_y < limit_y and next_x >= 0 and next_x < limit_x:
+                if maps[next_y][next_x] != 'X' and dist + 1 < map_copy[next_y][next_x]:
+                    map_copy[next_y][next_x] = dist + 1
+                    stack.append([next_y, next_x])
+    
+    if map_copy[to_coord[0]][to_coord[1]] != limit:
+        return map_copy[to_coord[0]][to_coord[1]]
+    else:
+        return -1
+
+def solution(maps):
+    answer = 0
+    
+    for index, map_row in enumerate(maps):
+        if 'S' in map_row:
+            start = [index, map_row.find('S')]
+        if 'L' in map_row:
+            lever = [index, map_row.find('L')]
+        if 'E' in map_row:
+            end = [index, map_row.find('E')]
+    
+    dist = find_way(maps, start, lever)
+    if dist != -1:
+        answer += dist
+    else:
+        answer = -1
+        
+    dist = find_way(maps, start, lever)
+    if dist != -1 or answer != -1:
+        answer += find_way(maps, lever, end)
+        
+    return answer
